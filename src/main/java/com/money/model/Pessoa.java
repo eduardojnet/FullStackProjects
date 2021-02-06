@@ -1,8 +1,7 @@
 package com.money.model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pessoa")
@@ -21,6 +20,35 @@ public class Pessoa {
     @Embedded
     private Endereco endereco;
 
+    public Long getCodigo() {
+        return codigo;
+    }
 
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
 
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }
