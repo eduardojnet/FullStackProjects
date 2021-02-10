@@ -3,6 +3,7 @@ package com.money.resource;
 import com.money.event.RecursoCriadoEvent.RecursoCriadoEvent;
 import com.money.model.Pessoa;
 import com.money.repository.PessoaRepository;
+import com.money.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaResource {
@@ -22,6 +24,9 @@ public class PessoaResource {
 
     @Autowired
     private ApplicationEventPublisher publisher;
+
+    @Autowired
+    private PessoaService pessoaService;
 
     @GetMapping
     public List<Pessoa> listarPessoas() {
@@ -46,4 +51,18 @@ public class PessoaResource {
     public void remover(@PathVariable final Long codigo) {
         pessoaRepository.deleteById(codigo);
     }
+
+    @PutMapping("/{codigo}")
+    public ResponseEntity<Pessoa> atualizar(@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa) {
+        Pessoa pessoaSalva = pessoaService.atualizar(codigo, pessoa);
+        return ResponseEntity.ok(pessoaSalva);
+
+    }
+
+    @PutMapping("/{codigo}/ativo")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizarPropriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo) {
+        pessoaService.atualizarPropriedadeAtivo(codigo, ativo);
+    }
+
 }
