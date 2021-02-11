@@ -22,7 +22,7 @@ public class Categoria {
         return codigo;
     }
 
-    public void setCodigo(Long codigo) {
+    public void setCodigo(final Long codigo) {
         this.codigo = codigo;
     }
 
@@ -30,7 +30,7 @@ public class Categoria {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(final String nome) {
         this.nome = nome;
     }
 
@@ -43,7 +43,7 @@ public class Categoria {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
