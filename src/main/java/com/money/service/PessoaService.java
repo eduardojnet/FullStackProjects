@@ -27,6 +27,7 @@ public class PessoaService {
         return pessoaSalva;
     }
 
+
     public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
         Pessoa pessoaSalva = encontrarPessoaPeloCodigo(codigo);
         pessoaSalva.setAtivo(ativo);
